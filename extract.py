@@ -8,8 +8,17 @@ department_code = "9737"
 grade_code = "1" 
 prefix = f"{year}{semester}0{department_code}{grade_code}"
 
-WEELDAT_IN_ENG = {"一": "M", "二": "T", "三": "W", "四": "R", "五": "F", "六": "S", "日": "U"}
-SECTION_TO_ENG = {**{i: str(i) for i in range(1, 10)}, 10: "A", 11: "B", 12: "C"}
+SECTION_TO_ENG = {**{i: str(i) for i in range(1, 10)}, 10: "a", 11: "b", 12: "c", 13: "d", 14: "e"}
+WEEKDAY_IN_ENG = {
+    "一": "M",
+    "二": "T",
+    "三": "W",
+    "四": "R",
+    "五": "F",
+    "六": "S",
+    "日": "U",
+}
+
 COURSE_TYPE = {"必修": 1, "選修": 0}
 
 with open("page.jsp", "r", encoding="utf-8") as file:
@@ -36,7 +45,7 @@ for row in table.find_all("tr")[1:]:
     rooms = []
     for day, start, end, room in matches:
         for i in range(int(start), int(end) + 1):
-            time += f"{WEELDAT_IN_ENG[day]}{SECTION_TO_ENG.get(int(i), str(i))}"
+            time += f"{WEEKDAY_IN_ENG[day]}{SECTION_TO_ENG.get(int(i), str(i))}"
         rooms.append(room)
 
     course_id = prefix + raw_id
