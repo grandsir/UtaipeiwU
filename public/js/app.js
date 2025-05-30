@@ -508,7 +508,6 @@ function search(searchTerm) {
         !(filter.department) &&
         !(filter.period)
     ) return [];
-
     const regex = RegExp(searchTerm, 'i');
     const regex2 = RegExp(searchTerm.replace(/\ /g, ''), 'i');
     const result = Object.values(courseData)
